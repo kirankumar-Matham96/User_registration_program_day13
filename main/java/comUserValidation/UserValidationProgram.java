@@ -8,7 +8,7 @@ public class UserValidationProgram
     //UC1: valid first name
     public static boolean validateFirstName(String first_name)
     {
-        return Pattern.matches("^[A-Z][a-z]{2,}",first_name);
+        return Pattern.matches("^[A-Z]{1}[a-z]{2,}",first_name);
     }
 
     //UC2: valid last name
