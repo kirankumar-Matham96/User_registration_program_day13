@@ -33,10 +33,11 @@ public class UserValidationProgram
     /*
     * rule1: must contain min 8 characters
     * rule2: at least 1 uppercase
+    * rule3: at least 1 numeric value
     * */
     public static boolean validatePassword(String password)
     {
-        return Pattern.matches("(?=.*[A-Z]).{8,}",password);
+        return Pattern.matches("(?=.*[A-Z])(?=.*[0-9]).{8,}",password);
     }
 
     //main method
@@ -46,6 +47,6 @@ public class UserValidationProgram
         System.out.println("last name: "+validateFirstName("Kumar"));
         System.out.println("Email: "+validateEmail("abc.xyz5@gmail.com.in"));
         System.out.println("Phone number: "+validatePhoneNumber("91 8688332960"));
-        System.out.println("Password: "+validatePassword("85dGsj&*gh"));
+        System.out.println("Password: "+validatePassword("dGs8j&*gh"));
     }
 }
