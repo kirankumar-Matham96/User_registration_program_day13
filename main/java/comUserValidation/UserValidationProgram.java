@@ -7,29 +7,45 @@ public class UserValidationProgram {
     /*
      * UC-1: validating first name
      */
-    public static boolean validateFirstName(String firstName) {
-        return Pattern.matches("^[A-Z]{1}[a-z]{2,}", firstName);
+    public static boolean validateFirstName(String firstName) throws UserValidationCustomExceptions {
+        try{
+            return Pattern.matches("^[A-Z]{1}[a-z]{2,}", firstName);
+        }catch(Exception exception){
+            throw new UserValidationCustomExceptions("Pleas enter valid first name");
+        }
     }
     
     /*
      * UC-2: validating last name
      */
-    public static boolean validateLastName(String lastName) {
-        return Pattern.matches("^[A-Z]{1}[a-z]{2,}", lastName);
+    public static boolean validateLastName(String lastName) throws UserValidationCustomExceptions {
+        try {
+            return Pattern.matches("^[A-Z]{1}[a-z]{2,}", lastName);
+        }catch(Exception exception){
+            throw new UserValidationCustomExceptions("Pleas enter valid last name");
+        }
     }
     
     /*
      * UC-3: validating email
      */
-    public static boolean validateEmail(String email) {
-        return Pattern.matches("^(?!\\.)[A-Za-z0-9]+([._%+-]?[0-9])*@[A-Za-z0-9-]+\\.[a-zA-Z]{2,}(\\.[A-Za-z]{2,})?$", email);
+    public static boolean validateEmail(String email) throws UserValidationCustomExceptions{
+        try {
+            return Pattern.matches("^(?!\\.)[A-Za-z0-9]+([._%+-]?[0-9])*@[A-Za-z0-9-]+\\.[a-zA-Z]{2,}(\\.[A-Za-z]{2,})?$", email);
+        }catch(Exception exception){
+            throw new UserValidationCustomExceptions("Pleas enter valid email");
+        }
     }
     
     /*
      * UC-4: validating predefined mobile number
      */
-    public static boolean validatePhoneNumber(String phoneNumber) {
-        return Pattern.matches("^[91]{2}\\s[0-9]{10}", phoneNumber);
+    public static boolean validatePhoneNumber(String phoneNumber) throws UserValidationCustomExceptions{
+        try {
+            return Pattern.matches("^[91]{2}\\s[0-9]{10}", phoneNumber);
+        }catch(Exception exception){
+            throw new UserValidationCustomExceptions("Pleas enter valid phone number");
+        }
     }
     
     /*
@@ -40,21 +56,25 @@ public class UserValidationProgram {
      *  Rule3: minimum 1 numeric
      *  Rule4: Exactly 1 special character
      */
-    public static boolean validatePassword(String userInput) {
-        String[] regexExpressions = {"[a-zA-Z0-9][@|#|$|%|&]{1,1}[a-zA-Z0-9]$", "(?=.[A-Z])(?=.[0-9])(?=.*[@|#|$|%|&])[A-Za-z0-9@#$%&]{8,}$"};
-        for(String regex : regexExpressions) {
-            if(!userInput.matches(regex)) {
-                return false;
+    public static boolean validatePassword(String userInput) throws UserValidationCustomExceptions {
+        try {
+            String[] regexExpressions = {"[a-zA-Z0-9][@|#|$|%|&]{1,1}[a-zA-Z0-9]$", "(?=.[A-Z])(?=.[0-9])(?=.*[@|#|$|%|&])[A-Za-z0-9@#$%&]{8,}$"};
+            for(String regex : regexExpressions) {
+                if(!userInput.matches(regex)) {
+                    return false;
+                }
             }
+            return true;
+        }catch(Exception exception) {
+            throw new UserValidationCustomExceptions("Pleas enter valid password");
         }
-        return true;
     }
     
     /*
      * UC-9: All types of email
      * adding email to array-list and calling validateEmail method
      */
-    public static void addToEmailList(String emailToAdd) {
+    public static void addToEmailList(String emailToAdd) throws UserValidationCustomExceptions {
         ArrayList<String> email = new ArrayList<String>();
         
         email.add(emailToAdd);
@@ -65,7 +85,7 @@ public class UserValidationProgram {
     }
     
     //main method
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UserValidationCustomExceptions {
         String firstName = "Rahul";
         String lastName = "Shinde";
         String phoneNumber = "91 8688332960";

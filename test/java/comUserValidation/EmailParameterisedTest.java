@@ -53,8 +53,7 @@ public class EmailParameterisedTest
     }
 
     @Test
-    public void givenSetOfEmails_ReturnsAccordingToTheParameters()
-    {
+    public void givenSetOfEmails_ReturnsAccordingToTheParameters() throws UserValidationCustomExceptions {
         assertEquals(expected, userValidationProgram.validateEmail(input));
     }
 
